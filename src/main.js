@@ -5,6 +5,10 @@ import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+// import Axios
+import Axios from 'axios';
+// instantiate axios
+Vue.prototype.$axios = Axios;
 
 Vue.config.productionTip = false
 
