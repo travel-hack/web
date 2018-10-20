@@ -21,6 +21,11 @@ export default new Router({
             component: Dashboard
         },
         {
+            path: '/privacy-policy',
+            name: '/privacy-policy',
+            component: PrivacyPolicy
+        },
+        {
             path: '/terms-and-conditions',
             name: 'terms',
             component: Terms

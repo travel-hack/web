@@ -2,7 +2,7 @@
 <v-app>
 	<v-toolbar app color="primary">
 		<v-toolbar-title>
-			<span class="white--text">TripChat</span>
+			<span class="white--text">TripChat.fun</span>
 		</v-toolbar-title>
 		<v-spacer></v-spacer>
 	</v-toolbar>
