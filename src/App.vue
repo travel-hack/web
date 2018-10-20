@@ -1,8 +1,8 @@
 <template>
 <v-app>
-	<v-toolbar app>
-		<v-toolbar-title class="headline text-uppercase">
-			<span>Tripchat</span>
+	<v-toolbar app color="primary">
+		<v-toolbar-title>
+			<span class="white--text">TripChat</span>
 		</v-toolbar-title>
 		<v-spacer></v-spacer>
 	</v-toolbar>
