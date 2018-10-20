@@ -2,7 +2,7 @@
 <v-app>
 	<v-toolbar app color="primary">
 		<v-toolbar-title>
-			<span class="white--text">TripChat.fun</span>
+			<router-link :to="{path: '/'}"><span class="white--text">TripChat</span></router-link>
 		</v-toolbar-title>
 		<v-spacer></v-spacer>
 	</v-toolbar>
