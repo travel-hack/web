@@ -9,6 +9,9 @@ import store from './store'
 import Axios from 'axios';
 // instantiate axios
 Vue.prototype.$axios = Axios;
+// import Moment
+import moment from 'moment'
+Vue.prototype.$moment = moment;
 
 Vue.config.productionTip = false
 
