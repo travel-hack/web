@@ -4,10 +4,10 @@
 		<v-flex xs12 md4 class="px-1">
 			<v-card tile class="my-2 py-2">
 				<v-layout row wrap>
-					<v-flex xs4 class="px-4">
+					<v-flex xs5 class="px-4">
 						Guets
 					</v-flex>
-					<v-flex xs4 class="text-xs-right px-4">
+					<v-flex xs3 class="text-xs-right px-4">
 						Rating
 					</v-flex>
 					<v-flex xs4 class="text-xs-right px-4">
@@ -20,8 +20,8 @@
 					<v-data-iterator :items="users" :pagination.sync="pagination_user" :total-items="total_user" :rows-per-page-items="rppi_user" style="width: 100%">
 						<template slot="item" slot-scope="props">
 							<v-layout row wrap @click="seeItem(props.item)" style="cursor: pointer;">
-								<v-flex xs4 class="py-2 px-4">
-									<v-layout row wrap>
+								<v-flex xs5 class="py-2 px-4">
+									<v-layout row>
 										<v-avatar size="50" class="mx-2">
 											<img :src="props.item.avatar_url">
 										</v-avatar>
@@ -35,7 +35,7 @@
 										</v-layout>
 									</v-layout>
 								</v-flex>
-								<v-flex xs4 class="text-xs-right py-2 px-4">
+								<v-flex xs3 class="text-xs-right py-2 px-4">
 									<v-layout column justify-center fill-height>
 										<div>
 											<v-icon v-if="getRatingInfo(props.item.rating) === 'red--text'" color="red" class="px-2">warning</v-icon>
@@ -84,7 +84,7 @@
 						<template slot="item" slot-scope="props">
 							<v-layout row wrap @click="seeContract(props.item)" style="cursor: pointer;">
 								<v-flex xs3 class="py-2 px-2">
-									<v-layout row wrap>
+									<v-layout row>
 										<v-avatar size="50" class="mx-2">
 											<img :src="props.item.player.avatar_url">
 										</v-avatar>
@@ -102,7 +102,7 @@
 									{{props.item.booking_id}}
 								</v-flex>
 								<v-flex xs3 class="py-2 px-2">
-									<v-layout row wrap>
+									<v-layout row>
 										<v-avatar size="50" class="mx-2" tile>
 											<img :src="props.item.booking.hotel_image" style="border-radius: 5px">
 										</v-avatar>
@@ -146,7 +146,7 @@
 					<div class="py-1 font-weight-bold">
 						Personal details
 					</div>
-					<v-layout row wrap class="py-1">
+					<v-layout row class="py-1">
 						<v-avatar size="50" class="mx-2">
 							<img :src="user.avatar_url">
 						</v-avatar>
@@ -208,7 +208,7 @@
 						<div class="py-1 font-weight-bold">
 							Guest
 						</div>
-						<v-layout row wrap class="py-1">
+						<v-layout row class="py-1">
 							<v-avatar size="50" class="mx-2">
 								<img :src="contract.player.avatar_url">
 							</v-avatar>
@@ -291,8 +291,8 @@ export default {
 		}
 	},
 	created() {
-		setInterval(this.getUsers, 2000);
-		setInterval(this.getContracts, 2000);
+		setInterval(this.getUsers, 5000);
+		setInterval(this.getContracts, 5000);
 		// this.getUsers();
 		// this.getContracts();
 	},
