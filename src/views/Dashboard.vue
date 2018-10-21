@@ -4,14 +4,17 @@
 		<v-flex xs12 md4 class="px-1">
 			<v-card tile class="my-2 py-2">
 				<v-layout row wrap>
-					<v-flex xs5 class="px-4">
+					<v-flex xs5 class="px-3">
 						Guets
 					</v-flex>
-					<v-flex xs3 class="text-xs-right px-4">
+					<v-flex xs2 class="text-xs-right px-4">
 						Rating
 					</v-flex>
-					<v-flex xs4 class="text-xs-right px-4">
-						Total bookings
+					<v-flex xs2 class="text-xs-right px-2">
+						Trips
+					</v-flex>
+					<v-flex xs3 class="text-xs-right px-3">
+						Total value
 					</v-flex>
 				</v-layout>
 			</v-card>
@@ -20,7 +23,7 @@
 					<v-data-iterator :items="users" :pagination.sync="pagination_user" :total-items="total_user" :rows-per-page-items="rppi_user" style="width: 100%">
 						<template slot="item" slot-scope="props">
 							<v-layout row wrap @click="seeItem(props.item)" style="cursor: pointer;">
-								<v-flex xs5 class="py-2 px-4">
+								<v-flex xs5 class="py-2 px-3">
 									<v-layout row>
 										<v-avatar size="50" class="mx-2">
 											<img :src="props.item.avatar_url">
@@ -35,7 +38,7 @@
 										</v-layout>
 									</v-layout>
 								</v-flex>
-								<v-flex xs3 class="text-xs-right py-2 px-4">
+								<v-flex xs2 class="text-xs-right py-2 px-3">
 									<v-layout column justify-center fill-height>
 										<div>
 											<v-icon v-if="getRatingInfo(props.item.rating) === 'red--text'" color="red" class="px-2">warning</v-icon>
@@ -44,7 +47,14 @@
 										</div>
 									</v-layout>
 								</v-flex>
-								<v-flex xs4 class="text-xs-right py-2 px-4">
+								<v-flex xs2 class="text-xs-right py-2 px-2">
+									<v-layout column justify-center fill-height>
+										<div class="">
+											{{props.item.bookings_count}}
+										</div>
+									</v-layout>
+								</v-flex>
+								<v-flex xs3 class="text-xs-right py-2 px-4">
 									<v-layout column justify-center fill-height>
 										<div class="">
 											{{props.item.bookings_total}} $
@@ -180,10 +190,16 @@
 								<v-text-field class="pa-0 ma-0" v-model="user.rating" />
 							</v-layout>
 						</v-flex>
-						<v-flex xs6 class="px-2">
+						<v-flex xs6>
+							<v-layout row class="px-2 pb-1">
+								<span class="px-2 pb-2">Trips:</span> {{ user.bookings_count }}
+
+							</v-layout>
+						</v-flex>
+						<v-flex xs9>
 							<v-layout row>
-								<span class="px-2 pt-2">Rating:</span>
-								<v-text-field class="pa-0 ma-0" v-model="user.bookings_total" />
+								<span class="pt-2 px-2">Total value:</span>
+								<v-text-field class="pa-0 ma-0" v-model="user.bookings_total" style="max-width:100px" />
 							</v-layout>
 						</v-flex>
 					</v-layout>
@@ -283,10 +299,10 @@ export default {
 			contracts: [],
 			total_user: 0,
 			pagination_user: null,
-			rppi_user: [10, 25, 50, 100],
+			rppi_user: [50, 100],
 			total_contract: 0,
 			pagination_contract: null,
-			rppi_contract: [10, 25, 50, 100],
+			rppi_contract: [50, 100],
 
 		}
 	},
