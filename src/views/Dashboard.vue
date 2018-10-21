@@ -7,10 +7,10 @@
 					<v-flex xs5 class="px-2">
 						Guets
 					</v-flex>
-					<v-flex xs2 class="text-xs-right px-2">
+					<v-flex xs3 class="text-xs-right px-2">
 						Rating
 					</v-flex>
-					<v-flex xs2 class="text-xs-right px-2">
+					<v-flex xs1 class="text-xs-right px-2">
 						Trips
 					</v-flex>
 					<v-flex xs3 class="text-xs-right px-2">
@@ -23,12 +23,12 @@
 					<v-data-iterator :items="users" :pagination.sync="pagination_user" :total-items="total_user" :rows-per-page-items="rppi_user" style="width: 100%">
 						<template slot="item" slot-scope="props">
 							<v-layout row wrap @click="seeItem(props.item)" style="cursor: pointer;">
-								<v-flex xs5 class="py-2 px-3">
+								<v-flex xs5 class="py-2 px-2">
 									<v-layout row>
 										<v-avatar size="50" class="mx-2">
 											<img :src="props.item.avatar_url">
 										</v-avatar>
-										<v-layout column justify-center class="px-2">
+										<v-layout column justify-center class="px-1">
 											<div class="">
 												{{props.item.firstname}}
 											</div>
@@ -38,7 +38,7 @@
 										</v-layout>
 									</v-layout>
 								</v-flex>
-								<v-flex xs2 class="text-xs-right py-2 px-3">
+								<v-flex xs3 class="text-xs-right py-2 px-1">
 									<v-layout column justify-center fill-height>
 										<div>
 											<v-icon v-if="getRatingInfo(props.item.rating) === 'red--text'" color="red" class="px-2">warning</v-icon>
@@ -47,17 +47,17 @@
 										</div>
 									</v-layout>
 								</v-flex>
-								<v-flex xs2 class="text-xs-right py-2 px-2">
+								<v-flex xs1 class="text-xs-right py-2 px-1">
 									<v-layout column justify-center fill-height>
 										<div class="">
 											{{props.item.bookings_count}}
 										</div>
 									</v-layout>
 								</v-flex>
-								<v-flex xs3 class="text-xs-right py-2 px-4">
+								<v-flex xs3 class="text-xs-right py-2 px-1">
 									<v-layout column justify-center fill-height>
 										<div class="">
-											{{props.item.bookings_total}} $
+											${{props.item.bookings_total}}
 										</div>
 									</v-layout>
 								</v-flex>
@@ -126,7 +126,7 @@
 								<v-flex xs2 class="pa-2 text-xs-right">
 									<v-layout column justify-center fill-height>
 										<div class="">
-											{{props.item.refund}} $
+											${{props.item.refund}}
 										</div>
 									</v-layout>
 								</v-flex>
