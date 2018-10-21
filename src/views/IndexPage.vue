@@ -88,6 +88,11 @@ export default {
 }
 </script>
 <style scoped>
+.content-app.index-div {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
 .home-title {
 	font-size: 100px;
 	color: #2196F3;
