@@ -2,7 +2,7 @@
 <div>
 	<div class="img-bg">
 		<v-layout column fill-height justify-center align-center>
-			<div class="home-title" style="text-shadow: 2px 2px grey;">
+			<div class="home-title pt-5" style="text-shadow: 2px 2px grey;">
 				TripChat
 			</div>
 			<div class="display-2 white--text text-xs-center my-1" style="text-shadow: 2px 2px grey;">

@@ -4,16 +4,16 @@
 		<v-flex xs12 md4 class="px-1">
 			<v-card tile class="my-2 py-2">
 				<v-layout row wrap>
-					<v-flex xs5 class="px-3">
+					<v-flex xs5 class="px-2">
 						Guets
 					</v-flex>
-					<v-flex xs2 class="text-xs-right px-4">
+					<v-flex xs2 class="text-xs-right px-2">
 						Rating
 					</v-flex>
 					<v-flex xs2 class="text-xs-right px-2">
 						Trips
 					</v-flex>
-					<v-flex xs3 class="text-xs-right px-3">
+					<v-flex xs3 class="text-xs-right px-2">
 						Total value
 					</v-flex>
 				</v-layout>
@@ -71,7 +71,7 @@
 		<v-flex xs12 md8 class="px-1">
 			<v-card tile class="my-2 py-2">
 				<v-layout row wrap>
-					<v-flex xs3 class="py-2 px-4">
+					<v-flex xs3 class="px-4">
 						User
 					</v-flex>
 					<v-flex xs2 class="px-2">
