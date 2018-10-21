@@ -88,6 +88,11 @@ export default {
 }
 </script>
 <style scoped>
+.home-title {
+	font-size: 100px;
+	color: #2196F3;
+}
+
 .container {
 	margin: 0;
 	max-width: 100%;
