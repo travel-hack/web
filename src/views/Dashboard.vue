@@ -63,7 +63,7 @@
 				<v-layout row wrap>
 					<v-data-iterator :items="contracts" :pagination.sync="pagination" :total-items="total" :rows-per-page-items="rppi" style="width: 100%">
 						<template slot="item" slot-scope="props">
-							<v-layout row wrap @click="seeContract(props.item)" style="cursor: pointer;">
+							<v-layout row wrap>
 								<v-flex xs3 class=" pa-2">
 									{{props.item.user_id}}
 								</v-flex>
@@ -227,7 +227,6 @@ export default {
 		}
 	},
 	created() {
-		console.log('time', process.env.VUE_APP_ENDPOINT_USER);
 		// setInterval(this.getUsers, 2000);
 		this.getUsers();
 		this.getContracts();
@@ -246,21 +245,6 @@ export default {
 				})
 				.finally(() => {
 					this.dialog_user = false;
-				});
-		},
-
-		saveContracts(item) {
-			// setup query endpoint
-			let endpoint = 'https://bot.tripchat.fun/api/contract/' + item.id;
-			this.$axios.put(endpoint, item)
-				.then(response => {
-					this.getContracts();
-				})
-				.catch(error => {
-					console.log(error);
-				})
-				.finally(() => {
-					this.dialog_contract = false;
 				});
 		},
 
@@ -299,11 +283,6 @@ export default {
 		seeItem(current_user) {
 			this.user = current_user;
 			this.dialog_user = true;
-		},
-
-		seeContract(current_contract) {
-			this.contract = current_contract;
-			this.dialog_contract = true;
 		},
 
 		formatDate(value) {
