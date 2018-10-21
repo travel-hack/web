@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Dashboard from './views/Dashboard.vue'
-import Home from './views/Home.vue'
+// import Home from './views/Home.vue'
+import IndexPage from './views/IndexPage.vue'
 import PrivacyPolicy from './views/PrivacyPolicy.vue'
 import Terms from './views/Terms.vue'
 
@@ -12,8 +13,17 @@ export default new Router({
   routes: [
         {
             path: '/',
-            name: 'home',
-            component: Home
+            name: 'index',
+            component: IndexPage
+        },
+        {
+            path: '/',
+            redirect: '/index'
+        },
+        {
+            path: '/index',
+            name: 'index',
+            component: IndexPage
         },
         {
             path: '/dashboard',

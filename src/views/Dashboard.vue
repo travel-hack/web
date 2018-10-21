@@ -4,36 +4,52 @@
 		<v-flex xs12 md6 class="px-1">
 			<v-card tile class="my-2 py-2">
 				<v-layout row wrap>
-					<v-flex xs3 class="px-2">
-						First Name
+					<v-flex xs4 class="px-4">
+						Name
 					</v-flex>
-					<v-flex xs3 class="px-2">
-						Last Name
-					</v-flex>
-					<v-flex xs3>
+					<v-flex xs4 class="text-xs-right px-4">
 						Rating
 					</v-flex>
-					<v-flex xs3>
+					<v-flex xs4 class="text-xs-right px-4">
 						Total bookings
 					</v-flex>
 				</v-layout>
 			</v-card>
 			<v-card>
 				<v-layout row wrap>
-					<v-data-iterator :items="users" :pagination.sync="pagination" :total-items="total" :rows-per-page-items="rppi" style="width: 100%">
+					<v-data-iterator :items="users" :pagination.sync="pagination_user" :total-items="total_user" :rows-per-page-items="rppi_user" style="width: 100%">
 						<template slot="item" slot-scope="props">
 							<v-layout row wrap @click="seeItem(props.item)" style="cursor: pointer;">
-								<v-flex xs3 class=" pa-2">
-									{{props.item.firstname}}
+								<v-flex xs4 class="py-2 px-4">
+									<v-layout row wrap>
+										<v-avatar size="50" class="mx-2">
+											<img :src="props.item.avatar_url" alt="alt">
+										</v-avatar>
+										<v-layout column justify-center class="px-2">
+											<div class="">
+												{{props.item.firstname}}
+											</div>
+											<div class="">
+												{{props.item.lastname}}
+											</div>
+										</v-layout>
+									</v-layout>
 								</v-flex>
-								<v-flex xs3 class="pa-2">
-									{{props.item.lastname}}
+								<v-flex xs4 class="text-xs-right py-2 px-4">
+									<v-layout column justify-center fill-height>
+										<div class="">
+											<v-icon v-if="getRatingInfo(props.item.rating) === 'red--text'" color="red" class="px-2">warning</v-icon>
+											<v-icon v-if="getRatingInfo(props.item.rating) === 'green--text'" color="green" class="px-2">star</v-icon>
+											<span :class="getRatingInfo(props.item.rating)">{{props.item.rating}}</span>
+										</div>
+									</v-layout>
 								</v-flex>
-								<v-flex xs3 class="pa-2">
-									{{props.item.rating}}
-								</v-flex>
-								<v-flex xs3 class="pa-2">
-									{{props.item.bookings_total}}
+								<v-flex xs4 class="text-xs-right py-2 px-4">
+									<v-layout column justify-center fill-height>
+										<div class="">
+											{{props.item.bookings_total}} $
+										</div>
+									</v-layout>
 								</v-flex>
 							</v-layout>
 							<v-divider></v-divider>
@@ -45,36 +61,36 @@
 		<v-flex xs12 md6 class="px-1">
 			<v-card tile class="my-2 py-2">
 				<v-layout row wrap>
-					<v-flex xs3 class="px-2">
+					<v-flex xs3 class="py-2 px-4">
 						User
 					</v-flex>
 					<v-flex xs3 class="px-2">
 						Booking
 					</v-flex>
-					<v-flex xs3>
+					<v-flex xs3 class="text-xs-right">
 						Expected refund
 					</v-flex>
-					<v-flex xs3>
+					<v-flex xs3 class="text-xs-center">
 						Status
 					</v-flex>
 				</v-layout>
 			</v-card>
 			<v-card>
 				<v-layout row wrap>
-					<v-data-iterator :items="contracts" :pagination.sync="pagination" :total-items="total" :rows-per-page-items="rppi" style="width: 100%">
+					<v-data-iterator :items="contracts" :pagination.sync="pagination_contract" :total-items="total_contract" :rows-per-page-items="rppi_contract" style="width: 100%">
 						<template slot="item" slot-scope="props">
-							<v-layout row wrap>
-								<v-flex xs3 class=" pa-2">
-									{{props.item.user_id}}
+							<v-layout row wrap @click="seeContract(props.item)" style="cursor: pointer;">
+								<v-flex xs3 class="py-2 px-4">
+									{{props.item.player_id}}
 								</v-flex>
 								<v-flex xs3 class="pa-2">
 									{{props.item.booking_id}}
 								</v-flex>
-								<v-flex xs3 class="pa-2">
-									{{props.item.expected_refund}}
+								<v-flex xs3 class="pa-2 text-xs-right">
+									{{props.item.refund}} $
 								</v-flex>
-								<v-flex xs3 class="pa-2">
-									{{props.item.status}}
+								<v-flex xs3 class="pa-2 text-xs-center">
+									<span :class="getStatusInfo(props.item.status)">{{props.item.status}}</span>
 								</v-flex>
 							</v-layout>
 							<v-divider></v-divider>
@@ -95,16 +111,18 @@
 					<div class="py-1 font-weight-bold">
 						Personal details
 					</div>
-					<v-layout row wrap fill-height align-center class="py-1">
-						<v-avatar size="40" class="px-2">
+					<v-layout row wrap class="py-1">
+						<v-avatar size="50" class="mx-2">
 							<img :src="user.avatar_url" alt="alt">
 						</v-avatar>
-						<div class="px-2">
-							{{ user.firstname }}
-						</div>
-						<div class="px-2">
-							{{ user.lastname }}
-						</div>
+						<v-layout column justify-center class="px-2">
+							<div>
+								{{user.firstname}}
+							</div>
+							<div>
+								{{user.lastname}}
+							</div>
+						</v-layout>
 					</v-layout>
 					<div class="py-1 font-weight-bold">
 						Profile details
@@ -154,7 +172,7 @@
 						<v-flex xs4>
 							Status:
 						</v-flex>
-						<v-flex xs8>
+						<v-flex xs8 :class="getStatusInfo(contract.status )">
 							{{ contract.status }}
 						</v-flex>
 					</v-layout>
@@ -163,7 +181,7 @@
 							User details:
 						</v-flex>
 						<v-flex xs8>
-							{{ contract.user_id }}
+							{{ contract.player_id }}
 						</v-flex>
 					</v-layout>
 					<v-layout row wrap class="my-1">
@@ -187,7 +205,7 @@
 							Expected refund:
 						</v-flex>
 						<v-flex xs8>
-							{{ contract.expected_refund  }}
+							{{ contract.refund }} $
 						</v-flex>
 					</v-layout>
 					<v-layout row wrap class="my-1">
@@ -220,14 +238,18 @@ export default {
 			users: [],
 			contract: {},
 			contracts: [],
-			total: 0,
-			pagination: null,
-			rppi: [10, 25, 50, 100],
+			total_user: 0,
+			pagination_user: null,
+			rppi_user: [10, 25, 50, 100],
+			total_contract: 0,
+			pagination_contract: null,
+			rppi_contract: [10, 25, 50, 100],
 
 		}
 	},
 	created() {
 		// setInterval(this.getUsers, 2000);
+		// setInterval(this.getContracts, 2000);
 		this.getUsers();
 		this.getContracts();
 	},
@@ -236,7 +258,7 @@ export default {
 		saveUser(item) {
 			// setup query endpoint
 			let endpoint = 'https://bot.tripchat.fun/api/player/' + item.id;
-			this.$axios.put(endpoint, item)
+			this.$axios.put(endpoint, item) // eslint-disable-next-line 
 				.then(response => {
 					this.getUsers();
 				})
@@ -278,6 +300,29 @@ export default {
 					// this.getContracts();
 					// setInterval(this.getContracts, 3000);
 				});
+		},
+
+		getRatingInfo(value) {
+			if(value < 40) {
+				return "red--text"
+			}
+			if(value > 70) {
+				return "green--text"
+			}
+		},
+
+		getStatusInfo(value) {
+			if(value === "refunded") {
+				return "red--text"
+			}
+			if(value === "closed") {
+				return "blue--text"
+			}
+		},
+
+		seeContract(current_contract) {
+			this.contract = current_contract;
+			this.dialog_contract = true;
 		},
 
 		seeItem(current_user) {

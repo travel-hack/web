@@ -11,6 +11,6 @@
 <style>
 .home-title {
 	font-size: 100px;
-	color: #7642FF;
+	color: #2196F3;
 }
 </style>
